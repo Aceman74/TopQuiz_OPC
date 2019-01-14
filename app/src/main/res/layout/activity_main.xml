@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.aceman.topquiz.controller.MainActivity">
+    android:background="@drawable/gradient"
+    tools:context="com.aceman.topquiz.controller.MainActivity"
+    >
 
     <TextView
         android:id="@+id/activity_main_known_user_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome back!"
+        android:text=""
+        android:textColor="@color/colorPrimary"
         android:gravity="center_horizontal"
-        android:padding="5dp"
+        android:padding="15dp"
+        android:textSize="16dp"
         />
     <TextView
         android:id="@+id/activity_main_greeting_txt"
@@ -21,13 +25,17 @@
         android:layout_height="wrap_content"
         android:text="Bienvenue dans TopQuiz. Quel est votre prénom ?"
         android:gravity="center"
-        android:padding="20dp" />
+        android:textColor="@color/colorPrimary"
+        android:padding="20dp"
+        android:textSize="16dp"
+        />
 <EditText
     android:id="@+id/activity_main_name_input"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="30dp"
     android:layout_marginEnd="30dp"
+    android:textColorHint="@android:color/darker_gray"
     android:hint="Entrez votre prénom"
     />
 <Button
@@ -37,7 +45,9 @@
     android:layout_gravity="center_horizontal"
     android:layout_margin="40dp"
     android:padding="40dp"
+    android:textColor="@android:color/black"
     android:text="C'est Parti !"
+    android:textSize="16dp"
     />
 
 

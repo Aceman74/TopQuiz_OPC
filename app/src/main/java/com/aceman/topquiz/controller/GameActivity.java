@@ -180,8 +180,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void EndGame() {
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
 
-        builder.setTitle("Well Done !!")
-                .setMessage("Your score is " +mScore)
+        builder.setTitle("Bravo !!")
+                .setMessage("Ton score est " +mScore)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

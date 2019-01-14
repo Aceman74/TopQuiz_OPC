@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("MainActivity:onCreate()");
         mUser = new User();
         mPreferences = getPreferences(MODE_PRIVATE);
-
         mKnownUser = findViewById(R.id.activity_main_known_user_text);
         mGreetingText = findViewById(R.id.activity_main_greeting_txt);
         mNameInput = findViewById(R.id.activity_main_name_input);
@@ -75,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String firstname = mNameInput.getText().toString();
                 mUser.setFirstName(firstname);
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         if (null != firstname) {
             int score = mPreferences.getInt(PREF_KEY_SCORE, 0);
 
-            String fulltext = " Vous voila de retour, " + firstname
-                    + "!\n Votre dernier score etait " + score
+            String fulltext = " Te voila de retour, " + firstname
+                    + "!\n Ton dernier score etait " + score
                     + ", Va-tu faire mieux ?";
             mGreetingText.setText(fulltext);
             mNameInput.setText(firstname);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        this.greetUser();
         out.println("MainActivity::onStart()");
     }
 
