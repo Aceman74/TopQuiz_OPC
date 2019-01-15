@@ -39,6 +39,7 @@
     android:layout_marginEnd="30dp"
     android:textColorHint="@android:color/darker_gray"
     android:hint="Entrez votre prénom"
+    android:text=""
     />
 <Button
     android:id="@+id/activity_main_play_btn"
