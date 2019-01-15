@@ -1,0 +1,117 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.aceman.topquiz.controller.RankActivity"
+    android:background="@color/colorPrimary"
+    >
+
+    <TextView
+        android:id="@+id/activity_classement_top_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:textColor="#ffff00"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="TOP 5"
+        />
+<Button
+    android:id="@+id/activity_rank_joueur1_btn"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:text="Joueur 1"
+    android:textColor="@color/colorAccent"
+    android:layout_gravity="center_horizontal"
+    android:layout_weight="1"
+    android:clickable="false"
+    android:background="@android:color/white"
+    android:layout_marginBottom="1dp"
+    />
+    <Button
+        android:id="@+id/activity_rank_joueur2_btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Joueur 2"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:background="@android:color/white"
+        android:layout_marginBottom="1dp"
+        />
+    <Button
+        android:id="@+id/activity_rank_joueur3_btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Joueur 3"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:background="@android:color/white"
+        android:layout_marginBottom="1dp"
+        />
+    <Button
+        android:id="@+id/activity_rank_joueur4_btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Joueur 4"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:background="@android:color/white"
+        android:layout_marginBottom="1dp"
+        />
+    <Button
+        android:id="@+id/activity_rank_joueur5_btn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Joueur 5"
+        android:textColor="@color/colorAccent"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:clickable="false"
+        android:background="@android:color/white"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/activity_rank_by_score_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:text="Par Score"
+        android:textSize="20dp"
+        android:textColor="#ffff00"
+        android:textAllCaps="false"
+        android:textStyle="italic"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/activity_rank_by_name_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:text="Par Nom"
+        android:textSize="20dp"
+        android:textColor="#ffff00"
+        android:textAllCaps="false"
+        android:textStyle="italic"
+        android:background="@color/colorAccent"/>
+</LinearLayout>
+
+</LinearLayout>

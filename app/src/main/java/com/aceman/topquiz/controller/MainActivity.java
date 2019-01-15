@@ -23,7 +23,10 @@ public class MainActivity extends AppCompatActivity {
    private EditText mNameInput;
    private Button mPlayButton;
    private User mUser;
-   public static final int GAME_ACTIVITY_REQUEST_CODE = 69;
+   private Button mShowRank;
+
+   public static final int GAME_ACTIVITY_REQUEST_CODE = 100;
+   public static final int RANK_ACTIVITY_REQUEST_CODE = 101;
    private SharedPreferences mPreferences;
    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
    public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
@@ -47,10 +50,11 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("MainActivity:onCreate()");
         mUser = new User();
         mPreferences = getPreferences(MODE_PRIVATE);
+        mShowRank = findViewById(R.id.activity_main_rank_btn);
         mKnownUser = findViewById(R.id.activity_main_known_user_text);
         mGreetingText = findViewById(R.id.activity_main_greeting_txt);
         mNameInput = findViewById(R.id.activity_main_name_input);
-        mPlayButton = findViewById(R.id.activity_main_playbtn);
+        mPlayButton = findViewById(R.id.activity_main_play_btn);
 
         mPlayButton.setEnabled(false);
 
@@ -82,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
 
+            }
+        });
+
+        mShowRank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rankActivityIntent = new Intent(MainActivity.this, RankActivity.class);
+                startActivityForResult(rankActivityIntent, RANK_ACTIVITY_REQUEST_CODE);
             }
         });
     }

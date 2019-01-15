@@ -14,20 +14,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
+        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         android:gravity="center_horizontal"
         android:padding="15dp"
-        android:textSize="16dp"
+        android:textSize="16sp"
         />
     <TextView
         android:id="@+id/activity_main_greeting_txt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Bienvenue dans TopQuiz. Quel est votre prénom ?"
+        android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:padding="20dp"
-        android:textSize="16dp"
+        android:textSize="16sp"
         />
 <EditText
     android:id="@+id/activity_main_name_input"
@@ -39,16 +41,30 @@
     android:hint="Entrez votre prénom"
     />
 <Button
-    android:id="@+id/activity_main_playbtn"
+    android:id="@+id/activity_main_play_btn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:layout_margin="40dp"
     android:padding="40dp"
-    android:textColor="@android:color/black"
+    android:textColor="@android:color/white"
+    android:background="@color/colorAccent"
     android:text="C'est Parti !"
-    android:textSize="16dp"
+    android:textSize="16sp"
+
     />
 
+    <Button
+        android:id="@+id/activity_main_rank_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom|center"
+        android:text="  Voir le Classement    "
+        android:textAllCaps="false"
+        android:background="#ffff00"
+        android:textSize="24sp"
+        android:textColor="@color/colorAccent"
 
+        />
 </LinearLayout>
+
