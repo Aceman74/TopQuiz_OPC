@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context=".controller.RankActivity">
+    <TextView
+        android:id="@+id/rank_titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="32dp"
+        android:text="Clasement"
+        android:textColor="#ffff00"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"/>
+    <ListView
+        android:id="@+id/rank_listview_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"/>
+    <TextView
+        android:id="@+id/rank_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/second_layout_rank"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="bottom|center"
+    >
+    <Button
+        android:id="@+id/rank_by_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Par Score"
+        android:textSize="18dp"
+        android:padding="5dp"
+        android:textColor="#ffff00"
+        android:textAllCaps="false"
+        android:textStyle="italic"
+        android:background="@color/colorAccent"
+        android:layout_margin="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"  />
+    <Button
+        android:id="@+id/rank_by_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Par Nom"
+        android:textSize="18dp"
+        android:padding="5dp"
+        android:textColor="#ffff00"
+        android:textAllCaps="false"
+        android:textStyle="italic"
+        android:background="@color/colorAccent"
+        android:layout_margin="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+</LinearLayout>
+
+</LinearLayout>

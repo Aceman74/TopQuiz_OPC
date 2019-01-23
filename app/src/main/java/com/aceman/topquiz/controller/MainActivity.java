@@ -2,7 +2,6 @@ package com.aceman.topquiz.controller;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,8 +12,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aceman.topquiz.R;
-import com.aceman.topquiz.model.User;
+import com.aceman.topquiz.model.SaveList;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.aceman.topquiz.controller.RankActivity.RANK_ACTIVITY_REQUEST_CODE;
 import static java.lang.System.out;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
    private TextView mGreetingText;
    private EditText mNameInput;
    private Button mPlayButton;
-   private User mUser;
+   private String  mUser;
    private Button mShowRank;
+   private ArrayList<SaveList> mPlayerList;
 
    public static final int GAME_ACTIVITY_REQUEST_CODE = 100;
-   public static final int RANK_ACTIVITY_REQUEST_CODE = 101;
    private SharedPreferences mPreferences;
-   public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
-   public static final String PREF_KEY_FIRSTNAME = "PREF_KEY_FIRSTNAME";
+   public static final String Score = "Score_Joueur";
+   public static final String Firstname = "Nom_Joueur";
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -37,19 +44,19 @@ public class MainActivity extends AppCompatActivity {
             // Fetch the score from the intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
 
-            mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
+            mPlayerList.add(new SaveList(mUser,score));
+            mNameInput.setText(mUser);
+            mNameInput.setSelection(mUser.length());
+            SaveData();     //Sauvegarde
         }
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         System.out.println("MainActivity:onCreate()");
-        mUser = new User();
-        mPreferences = getPreferences(MODE_PRIVATE);
+        LoadData(); // Chargement du classement
         mShowRank = findViewById(R.id.activity_main_rank_btn);
         mKnownUser = findViewById(R.id.activity_main_known_user_text);
         mGreetingText = findViewById(R.id.activity_main_greeting_txt);
@@ -78,10 +85,9 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                SaveData();     //Sauvegarde
                 String firstname = mNameInput.getText().toString();
-                mUser.setFirstName(firstname);
-                mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstName()).apply();
+                mUser = firstname;
 
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
@@ -92,33 +98,44 @@ public class MainActivity extends AppCompatActivity {
         mShowRank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SaveData();     //Sauvegarde
                 Intent rankActivityIntent = new Intent(MainActivity.this, RankActivity.class);
                 startActivityForResult(rankActivityIntent, RANK_ACTIVITY_REQUEST_CODE);
             }
         });
     }
 
-    private void greetUser() {
-        String firstname = mPreferences.getString(PREF_KEY_FIRSTNAME, null);
+private void SaveData() {   // Systeme de sauvegarde de list dans SharedPreferences
+    SharedPreferences mPreferences = getSharedPreferences("TopQuiz", MODE_PRIVATE);
+    SharedPreferences.Editor editor = mPreferences.edit();
+    Gson gson = new Gson();
+    String json = gson.toJson(mPlayerList);
+    editor.putString("ListeJoueurs", json);
+    editor.apply();
+}
 
-        if (null != firstname) {
-            int score = mPreferences.getInt(PREF_KEY_SCORE, 0);
+private void LoadData(){    // Systeme de chargement de list dans SharedPreferences
+    SharedPreferences mPreferences =   getSharedPreferences("TopQuiz", MODE_PRIVATE);
+    Gson gson = new Gson();
+    String json = mPreferences.getString("ListeJoueurs",null);
+    Type type = new TypeToken<ArrayList<SaveList>>() {}.getType();
+    mPlayerList = gson.fromJson(json,type);
 
-            String fulltext = " Te voila de retour, " + firstname
-                    + "!\n Ton dernier score etait " + score
-                    + ", Va-tu faire mieux ?";
-            mGreetingText.setText(fulltext);
-            mNameInput.setText(firstname);
-            mNameInput.setSelection(firstname.length());
-            mPlayButton.setEnabled(true);
-        }
+  if(mPlayerList == null){
+mPlayerList = new ArrayList<SaveList>(); // Création de liste vide
+
+     /* mPlayerList.add(0, new SaveList("Robert",1)); // Création de liste avec Joueurs
+        mPlayerList.add(1, new SaveList("Pedro",3));
+        mPlayerList.add(2, new SaveList("Sandra",2));
+        mPlayerList.add(3, new SaveList("Alex",4));
+        mPlayerList.add(4, new SaveList("Biloute",0));
+       */
     }
-
+}
 
     @Override
     protected void onStart() {
         super.onStart();
-        this.greetUser();
         out.println("MainActivity::onStart()");
     }
 
