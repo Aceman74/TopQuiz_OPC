@@ -19,7 +19,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.aceman.topquiz.controller.MainActivity.Firstname;
 import static java.lang.System.out;
 
 public class RankActivity extends AppCompatActivity {
@@ -37,21 +36,6 @@ public class RankActivity extends AppCompatActivity {
     private List<SaveList> mPlayerListRank;
 
 
-    /*
-    @Override
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (RANK_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
-            // Fetch the score from the intent
-            String score = data.getStringExtra(MainActivity.PREF_KEY_SCORE);
-            String firstname = data.getStringExtra(MainActivity.PREF_KEY_FIRSTNAME);
-
-            mPreferencesRank.edit().putString(PREF_KEY_SCORE, score).apply();
-            mPreferencesRank.edit().putString(PREF_KEY_FIRSTNAME, firstname).apply();
-        }
-    }
- */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +47,9 @@ public class RankActivity extends AppCompatActivity {
         mPreferencesRank = getSharedPreferences("TopQuiz",MODE_PRIVATE);
         Button ByName = findViewById(R.id.rank_by_name);
         Button ByScore = findViewById(R.id.rank_by_score);
+
+        //  Boutons de choix du tri des scores
+
         ByName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,9 +75,7 @@ public class RankActivity extends AppCompatActivity {
         ListView SaveListView = findViewById(R.id.rank_listview_layout);
         SaveListView.setAdapter(new MyAdapter(this, mPlayerListRank));
 
-
-
-
+        //  Ancien affichage des scores
         /*
         mTop5 = findViewById(R.id.activity_classement_top_text);
         mRank1 = findViewById(R.id.activity_rank_joueur1_btn);
@@ -141,6 +126,10 @@ public class RankActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Methodes ancien affichage des scores avec le layout actvivity_rank_old.xml
+     */
+    /*
     private void displayScoreRank(){
 
         String firstname = mPreferencesRank.getString("Name", null);
@@ -160,6 +149,7 @@ public class RankActivity extends AppCompatActivity {
         mRank4.setText("4 ");
         mRank5.setText("5 ");
     }
+    */
 
     @Override
     protected void onStart() {

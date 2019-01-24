@@ -2,8 +2,8 @@ package com.aceman.topquiz.controller;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -16,13 +16,15 @@ import com.aceman.topquiz.model.SaveList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static com.aceman.topquiz.controller.RankActivity.RANK_ACTIVITY_REQUEST_CODE;
 import static java.lang.System.out;
+
+/**
+ * @author Aceman
+ */
 
 public class MainActivity extends AppCompatActivity {
     private TextView mKnownUser;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
    private String  mUser;
    private Button mShowRank;
    private ArrayList<SaveList> mPlayerList;
+   private boolean mFirstLaunch = true;
 
    public static final int GAME_ACTIVITY_REQUEST_CODE = 100;
    private SharedPreferences mPreferences;
@@ -64,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton = findViewById(R.id.activity_main_play_btn);
 
         mPlayButton.setEnabled(false);
+        //  Affichage du bouton clasement apres le premier score, également dans OnResume
+        if(mPlayerList.size() > 0){
+            mShowRank.setVisibility(View.VISIBLE);
+            mShowRank.setEnabled(true);
+        }
 
         mNameInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -142,7 +150,10 @@ mPlayerList = new ArrayList<SaveList>(); // Création de liste vide
     @Override
     protected void onResume() {
         super.onResume();
-
+        if(mPlayerList.size() > 0){
+            mShowRank.setVisibility(View.VISIBLE);
+            mShowRank.setEnabled(true);
+        }
         out.println("MainActivity::onResume()");
     }
 

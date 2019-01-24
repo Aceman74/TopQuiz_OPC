@@ -23,6 +23,9 @@ import java.util.List;
 /**
  * Created by Lionel JOFFRAY - on 23/01/2019.
  */
+
+// Adaptater pour afficher les scores en ListView
+
 public class MyAdapter extends BaseAdapter {
 
     public static boolean byName;
@@ -39,9 +42,13 @@ public class MyAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if(byScore)
-            return 5;
-        else
+        if(byScore){ // Si par score return 5 meilleurs
+            if(mPlayerListRank.size()<5)
+            return mPlayerListRank.size();
+            else return 5;
+        }
+
+        else    // Si par nom return tout les noms
             return mPlayerListRank.size();
     }
 
@@ -58,6 +65,7 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        //  choix de l'affichage par nom ou score
         if(byName)
         Collections.sort(mPlayerListRank, new SortByName());
         if(byScore)

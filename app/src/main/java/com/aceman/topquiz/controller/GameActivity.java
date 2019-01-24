@@ -2,10 +2,10 @@ package com.aceman.topquiz.controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -86,39 +86,39 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         private QuestionBank generateQuestions() {
-            Question question1 = new Question("What is the name of the current french president?",
+            Question question1 = new Question("Quel est le nom du Président Français actuel ?",
                     Arrays.asList("François Hollande", "Emmanuel Macron", "Jacques Chirac", "François Mitterand"),
                     1);
 
-            Question question2 = new Question("How many countries are there in the European Union?",
+            Question question2 = new Question("Combien de pays compte l'Union Européenne ?",
                     Arrays.asList("15", "24", "28", "32"),
                     2);
 
-            Question question3 = new Question("Who is the creator of the Android operating system?",
+            Question question3 = new Question("Qui est le créateur du systeme Android ?",
                     Arrays.asList("Andy Rubin", "Steve Wozniak", "Jake Wharton", "Paul Smith"),
                     0);
 
-            Question question4 = new Question("When did the first man land on the moon?",
+            Question question4 = new Question("Quand le premier homme a-t-il marcher sur la Lune ?",
                     Arrays.asList("1958", "1962", "1967", "1969"),
                     3);
 
-            Question question5 = new Question("What is the capital of Romania?",
-                    Arrays.asList("Bucarest", "Warsaw", "Budapest", "Berlin"),
+            Question question5 = new Question("Quel nom porte la plus petite partie d'une image numérique ? ",
+                    Arrays.asList("Pixel", "Point", "Millimètre", "Pouce"),
                     0);
 
-            Question question6 = new Question("Who did the Mona Lisa paint?",
-                    Arrays.asList("Michelangelo", "Leonardo Da Vinci", "Raphael", "Carravagio"),
+            Question question6 = new Question("Quel bruit fait un flipper quand on le secoue trop ?",
+                    Arrays.asList("Bing", "Tilt", "Alert", "Honk"),
                     1);
 
-            Question question7 = new Question("In which city is the composer Frédéric Chopin buried?",
-                    Arrays.asList("Strasbourg", "Warsaw", "Paris", "Moscow"),
+            Question question7 = new Question("Quel mot Citizen Kane prononce-t-il en mourant ? ",
+                    Arrays.asList("Fuyez, pauvres fous", "Au revoir, Shoshana", "Rosebud", "I'll be back"),
                     2);
 
-            Question question8 = new Question("What is the country top-level domain of Belgium?",
-                    Arrays.asList(".bg", ".bm", ".bl", ".be"),
+            Question question8 = new Question("Quel sport associe-t-on au Quinze de France ?",
+                    Arrays.asList("Handball", "Football", "Basket", "Rugby"),
                     3);
 
-            Question question9 = new Question("What is the house number of The Simpsons?",
+            Question question9 = new Question("Quel est le numéro de rue des Simpsons?",
                     Arrays.asList("42", "101", "666", "742"),
                     3);
 
@@ -150,7 +150,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             mScore++;
             // Good answer
         } else {
-            Toast.makeText(this, "Wrong !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Faux !", Toast.LENGTH_SHORT).show();
             // Wrong answer
         }
         mEnableTouchEvents = false;
@@ -180,7 +180,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void EndGame() {
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
 
-        builder.setTitle("Bravo !!")
+
+        builder.setTitle(Result())
                 .setMessage("Ton score est " +mScore)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -194,6 +195,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 })
                 .create()
                 .show();
+    }
+    private String Result(){
+       String  Phrase;
+       if(mScore>0) return Phrase = "Bravo !!";
+       else return Phrase = "Tu fera mieux la prochaine !";
     }
     @Override
     protected void onStart() {

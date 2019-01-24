@@ -5,6 +5,7 @@ import java.util.Comparator;
 /**
  * Created by Lionel JOFFRAY - on 22/01/2019.
  */
+    // Creation d'un joueur pour save dans une list dans SharedPreferences
 public class SaveList {
 protected String mName;
 protected int mScore;
@@ -22,15 +23,17 @@ int getScore(){
 }
 
 }
+
+    //  Methode comparative par score ou par nom
+
 class SortByScore implements Comparator<SaveList>
 {
-    // Used for sorting in ascending order of
-    // roll number
     public int compare(SaveList a, SaveList b)
     {
         return b.mScore - a.mScore;
     }
 }
+
  class SortByName implements Comparator<SaveList> {
     @Override
     public int compare(SaveList p1, SaveList p2) {
